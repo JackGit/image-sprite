@@ -1,0 +1,19 @@
+{
+  "name": "image-sprite",
+  "version": "0.0.1",
+  "description": "play image movie by spritesheet, or a series of images\r able to control with speed, direction, etc.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackgit/image-sprite.git"
+  },
+  "author": "ygjack414@hotmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jackgit/image-sprite/issues"
+  },
+  "homepage": "https://github.com/jackgit/image-sprite#readme"
+}
