@@ -119,7 +119,7 @@ ImageSprite.prototype.pause = function () {
   this.isPlaying = false
 }
 
-ImageSprite.prototype.next =function () {
+ImageSprite.prototype.next = function () {
   this.currentFrameIndex = getValidIndex(this.currentFrameIndex + 1, this.images.length)
   this._draw()
 }
