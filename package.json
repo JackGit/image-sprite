@@ -1,10 +1,12 @@
 {
   "name": "image-sprite",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "play image movie by spritesheet, or a series of images\r able to control with speed, direction, etc.",
-  "main": "index.js",
+  "main": "dist/image-sprite.js",
+  "module": "src/image-sprite.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",

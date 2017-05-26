@@ -1,22 +1,32 @@
-export function loadImages (imageURLs, onLoaded) {
-  let results = new Array(imageURLs.length)
+function loadImage (imageURL, onLoaded) {
+  var image = new Image()
+  image.onload = function () { onLoaded(image) }
+  image.crossOrigin = true
+  image.src = imageURL
+}
 
-  imageURLs.forEach((url, index) => {
-    loadImage(url, image => {
-      if (typeof image === 'string') {
-        results[index] = image
-      } else {
-        results[index] = image
-      }
+function loadImages (images, onLoaded) {
+  var results = new Array(images.length)
 
-      if (results.filter(r => r).length === imageURLs.length) {
-        onLoaded && onLoaded(results)
-      }
-    })
+  images.forEach(function (image, index) {
+    if (typeof image === 'string') {
+      loadImage(image, function (imageLoaded) {
+        results[index] = imageLoaded
+        if (results.filter(function (r) { return r }).length === images.length) {
+          onLoaded && onLoaded(results)
+        }
+      })
+    } else {
+      results[index] = image
+    }
   })
 }
 
-export function getValidIndex (index, length) {
+function getValidIndex (index, length) {
+  if (length < 1) {
+    return -1
+  }
+
   if (index >= 0) {
     index %= length
   } else {
@@ -25,9 +35,12 @@ export function getValidIndex (index, length) {
   return index
 }
 
-function loadImage (imageURL, onLoaded) {
-  let image = new Image()
-  image.onload = onLoaded(image)
-  image.crossOrigin = true
-  image.src = imageURL
+function inherit (prototype, body) {
+  return Object.assign(Object.create(prototype), body)
+}
+
+module.exports = {
+  loadImages: loadImages,
+  getValidIndex: getValidIndex,
+  inherit: inherit
 }
