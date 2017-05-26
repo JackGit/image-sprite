@@ -3,9 +3,9 @@ var CanvasRenderer = require('./canvas-renderer')
 var loadImages = require('./utils').loadImages
 var getValidIndex = require('./utils').getValidIndex
 var LoopMode = require('./play-modes').LoopMode
-let RepeatMode = require('./play-modes').RepeatMode
-let ByFrameMode = require('./play-modes').ByFrameMode
-let ToFrameMode = require('./play-modes').ToFrameMode
+var RepeatMode = require('./play-modes').RepeatMode
+var ByFrameMode = require('./play-modes').ByFrameMode
+var ToFrameMode = require('./play-modes').ToFrameMode
 var FORWARD = require('./constants').FORWARD
 var BACKWARD = require('./constants').BACKWARD
 var ALTERNATE = require('./constants').ALTERNATE
@@ -17,9 +17,9 @@ function ImageSprite (el, options) {
     mode: 'canvas', // dom
     interval: 16,
     images: [], // array of image url / element, or a sprite image
-    onLoaded:  function () { console.log('on loaded') },
-    onUpdate: function () { console.log('on update') },
-    onComplete:  function () { console.log('on complete') }
+    onLoaded: null,
+    onUpdate: null,
+    onComplete: null
   }
 
   options = (options || {})
@@ -69,9 +69,9 @@ ImageSprite.prototype._load = function () {
 
 ImageSprite.prototype._onLoad = function (results) {
   this.images = results
-  this.options.onLoaded && this.options.onLoaded.bind(this)()
   this.next()
   this._loop()
+  this.options.onLoaded && this.options.onLoaded.bind(this)()
 }
 
 ImageSprite.prototype._loop = function () {

@@ -7,7 +7,7 @@ function DomRenderer (width, height) {
   this._init()
 }
 
-DomRenderer.protoype = inherit(Renderer.prototype, {
+DomRenderer.prototype = inherit(Renderer.prototype, {
   constructor: DomRenderer,
 
   _init: function () {
@@ -19,7 +19,7 @@ DomRenderer.protoype = inherit(Renderer.prototype, {
     this.domElement = div
   },
 
-  _styleImage: function () {
+  _styleImage: function (image) {
     image.style.position = 'absolute'
     image.style.top = 0
     image.style.left = 0
@@ -29,15 +29,16 @@ DomRenderer.protoype = inherit(Renderer.prototype, {
 
   drawImage: function (image) {
     if (this.images.indexOf(image) === -1) {
+      this.images.forEach(function (img) { img.style.opacity = 0 })
       this._styleImage(image)
       this.domElement.appendChild(image)
       this.images.push(image)
     } else {
       this.images.forEach(function (img) {
         if (img === image) {
-          img.style.display = 'block'
+          img.style.opacity = 1
         } else {
-          img.style.display = 'none'
+          img.style.opacity = 0
         }
       })
     }

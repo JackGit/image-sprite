@@ -19,7 +19,7 @@ CanvasRenderer.prototype = inherit(Renderer.prototype, {
   },
 
   drawImage: function (image) {
-    console.log('draw image', image, image.complete)
+    this.context.clearRect(0, 0, this.width, this.height)
     this.context.drawImage(image, 0, 0, this.width, this.height)
   }
 })

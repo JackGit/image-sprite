@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>ImageSprite Demo</title>
+  </head>
+  <body>
+    <div>
+      <button onclick="play()">Play</button>
+      <button onclick="pause()">Pause</button>
+      <button onclick="repeatTwice()">Repeat Twice</button>
+      <button onclick="playReverse()">Play Reverse</button>
+      <button onclick="playAlternate()">Play Alternate</button>
+    </div>
+    <div>
+      <button onclick="next()">Next Frame</button>
+      <button onclick="prev()">Prev Frame</button>
+      <button onclick="next5Frames()">Next 5 Frames</button>
+      <button onclick="to3Frame()">To 3rd Frame</button>
+    </div>
+
+    <h4>CanvasRenderer</h4>
+    <div id="canvasRenderer"></div>
+
+    <h4>DOMRenderer</h4>
+    <div id="domRenderer"></div>
+
+    <script src="../dist/image-sprite.min.js"></script>
+    <script>
+      var canvasIS = null
+      var domIS = null
+
+      function getImages () {
+        var images = []
+        for (var i = 0; i < 15; i++) {
+          images.push('./images/p' + (i + 1) + '.png')
+        }
+        return images
+      }
+
+      function createImageSprite (el, mode) {
+        return new ImageSprite(el, {
+          width: 300,
+          height: 268,
+          images: getImages(),
+          interval: 16,
+          mode: mode,
+          onLoaded: function () {
+            this.play()
+          }
+        })
+      }
+
+      function createCanvasDemo () {
+        canvasIS = createImageSprite('canvasRenderer', 'canvas')
+      }
+
+      function createDomDemo () {
+        domIS = createImageSprite('domRenderer', 'dom')
+      }
+
+      function play () {
+        canvasIS.play()
+        domIS.play()
+      }
+
+      function pause () {
+        canvasIS.pause()
+        domIS.pause()
+      }
+
+      function next5Frames () {
+        canvasIS.play({ byFrame: 5 })
+        domIS.play({ byFrame: 5 })
+      }
+
+      function to3Frame () {
+        canvasIS.play({ toFrame: 3 })
+        domIS.play({ toFrame: 3 })
+      }
+
+      function repeatTwice () {
+        canvasIS.play({ repeat: 2 })
+        domIS.play({ repeat: 2 })
+      }
+
+      function playReverse () {
+        canvasIS.play({ direction: 'backward' })
+        domIS.play({ direction: 'backward' })
+      }
+
+      function playAlternate () {
+        canvasIS.play({ direction: 'alternate' })
+        domIS.play({ direction: 'alternate' })
+      }
+
+      function next () {
+        canvasIS.next()
+        domIS.next()
+      }
+
+      function prev () {
+        canvasIS.prev()
+        domIS.prev()
+      }
+
+      createCanvasDemo()
+      createDomDemo()
+    </script>
+  </body>
+</html>

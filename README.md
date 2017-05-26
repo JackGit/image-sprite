@@ -1,3 +1,7 @@
-play image movie by spritesheet, or a series of images
-able to control with speed, direction, etc.
-DOM mode and canvas mode
+Play a series of images as sprite animation. It can be render into DOM or canvas.
+
+### Install
+
+```bash
+npm i image-sprite --save
+```
