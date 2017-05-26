@@ -1,6 +1,6 @@
 {
   "name": "image-sprite",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "play image movie by spritesheet, or a series of images\r able to control with speed, direction, etc.",
   "main": "src/image-sprite.js",
   "module": "src/image-sprite.js",
