@@ -23,13 +23,14 @@ PlayMode.prototype.updateDirection = function () {
 
 PlayMode.prototype.update = function () {
   var imageSprite = this.imageSprite
-  this.updateDirection()
 
   if (this.direction === FORWARD) {
     imageSprite.next()
   } else {
     imageSprite.prev()
   }
+
+  this.updateDirection()
 }
 
 /* LoopMode class */
