@@ -1,5 +1,9 @@
 Play a series of images as sprite animation. It can be render into DOM or canvas.
 
+### Demo
+
+[live demo](https://jackgit.github.io/image-sprite/index.html)
+
 ### Install
 
 npm install:
